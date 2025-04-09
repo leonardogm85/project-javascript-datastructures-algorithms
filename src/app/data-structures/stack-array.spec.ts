@@ -1,8 +1,8 @@
-import { Stack } from './stack';
+import { StackArray } from './stack-array';
 
-describe('Stack', () => {
+describe('StackArray', () => {
   it('starts empty', () => {
-    const stack: Stack<number> = new Stack<number>();
+    const stack: StackArray<number> = new StackArray<number>();
 
     expect(stack.size()).toEqual(0);
 
@@ -10,7 +10,7 @@ describe('Stack', () => {
   });
 
   it('pushes elements', () => {
-    const stack: Stack<number> = new Stack<number>();
+    const stack: StackArray<number> = new StackArray<number>();
 
     stack.push(1);
     expect(stack.size()).toEqual(1);
@@ -25,7 +25,7 @@ describe('Stack', () => {
   });
 
   it('pops elements', () => {
-    const stack: Stack<number> = new Stack<number>();
+    const stack: StackArray<number> = new StackArray<number>();
 
     stack.push(1);
     stack.push(2);
@@ -38,7 +38,7 @@ describe('Stack', () => {
   });
 
   it('implements LIFO logic', () => {
-    const stack: Stack<number> = new Stack<number>();
+    const stack: StackArray<number> = new StackArray<number>();
 
     stack.push(1);
     stack.push(2);
@@ -51,7 +51,7 @@ describe('Stack', () => {
   });
 
   it('allows to peek at the top element in he stack without popping it', () => {
-    const stack: Stack<number> = new Stack<number>();
+    const stack: StackArray<number> = new StackArray<number>();
 
     expect(stack.peek()).toEqual(undefined);
 
@@ -66,7 +66,7 @@ describe('Stack', () => {
   });
 
   it('returns the correct size', () => {
-    const stack: Stack<number> = new Stack<number>();
+    const stack: StackArray<number> = new StackArray<number>();
 
     expect(stack.size()).toEqual(0);
 
@@ -100,7 +100,7 @@ describe('Stack', () => {
   });
 
   it('returns if it is empty', () => {
-    const stack: Stack<number> = new Stack<number>();
+    const stack: StackArray<number> = new StackArray<number>();
 
     expect(stack.isEmpty()).toEqual(true);
 
@@ -134,7 +134,7 @@ describe('Stack', () => {
   });
 
   it('clears the stack', () => {
-    const stack: Stack<number> = new Stack<number>();
+    const stack: StackArray<number> = new StackArray<number>();
 
     stack.clear();
     expect(stack.isEmpty()).toEqual(true);
@@ -146,21 +146,40 @@ describe('Stack', () => {
     expect(stack.isEmpty()).toEqual(true);
   });
 
+  it('returns an Array', () => {
+    const stack: StackArray<number> = new StackArray<number>();
+
+    let stackArray: number[] = stack.toArray();
+    expect(stackArray.length).toEqual(0);
+
+    stack.push(1);
+    stack.push(2);
+
+    stackArray = stack.toArray();
+    expect(stackArray.length).toEqual(2);
+
+    let i: number = 1;
+
+    stackArray.forEach(e => {
+      expect(e).toEqual(i++);
+    });
+  });
+
   it('returns toString primitive types', () => {
-    const stackNumber: Stack<number> = new Stack<number>();
+    const stack: StackArray<number> = new StackArray<number>();
 
-    expect(stackNumber.toString()).toEqual('');
+    expect(stack.toString()).toEqual('');
 
-    stackNumber.push(1);
-    expect(stackNumber.toString()).toEqual('1');
+    stack.push(1);
+    expect(stack.toString()).toEqual('1');
 
-    stackNumber.push(2);
-    expect(stackNumber.toString()).toEqual('1,2');
+    stack.push(2);
+    expect(stack.toString()).toEqual('1,2');
 
-    stackNumber.clear();
-    expect(stackNumber.toString()).toEqual('');
+    stack.clear();
+    expect(stack.toString()).toEqual('');
 
-    const stackString: Stack<string> = new Stack<string>();
+    const stackString: StackArray<string> = new StackArray<string>();
 
     stackString.push('e1');
     expect(stackString.toString()).toEqual('e1');
@@ -180,14 +199,14 @@ describe('Stack', () => {
       }
     }
 
-    const stackMyObject: Stack<MyObject> = new Stack<MyObject>();
+    const stackMyObj: StackArray<MyObject> = new StackArray<MyObject>();
 
-    expect(stackMyObject.toString()).toEqual('');
+    expect(stackMyObj.toString()).toEqual('');
 
-    stackMyObject.push(new MyObject(1, 2));
-    expect(stackMyObject.toString()).toEqual('1|2');
+    stackMyObj.push(new MyObject(1, 2));
+    expect(stackMyObj.toString()).toEqual('1|2');
 
-    stackMyObject.push(new MyObject(3, 4));
-    expect(stackMyObject.toString()).toEqual('1|2,3|4');
+    stackMyObj.push(new MyObject(3, 4));
+    expect(stackMyObj.toString()).toEqual('1|2,3|4');
   });
 });

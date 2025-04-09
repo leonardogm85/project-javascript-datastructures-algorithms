@@ -1,7 +1,9 @@
+import { StackObject } from "../models/stack-object";
+
 export class Stack<T> {
 
   private count: number = 0;
-  private items: any = {};
+  private items: StackObject<T> = {};
 
   push(element: T): void {
     this.items[this.count++] = element;

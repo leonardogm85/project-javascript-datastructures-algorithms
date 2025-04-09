@@ -1,4 +1,4 @@
-import { decimalToBinary, baseConverter } from "./base-converter";
+import { decimalToBinary, baseConverter } from './base-converter';
 
 describe('Base Converter', () => {
   it('decimalToBinary 1 -> 1', () => {
