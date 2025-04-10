@@ -1,10 +1,8 @@
-import { DequeObject } from "../models/deque-object";
-
 export class Deque<T> {
 
   private count: number = 0;
   private lowestCount: number = 0;
-  private items: DequeObject<T> = {};
+  private items: { [key: number]: T } = {};
 
   addFront(element: T): void {
     if (this.isEmpty()) {

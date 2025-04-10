@@ -1,5 +1,5 @@
 import { Stack } from '../data-structures/stack';
-import { MoveTowerOfHanoi } from '../models/move-tower-of-hanoi';
+import { TowerOfHanoiModel } from '../models/tower-of-hanoi-model';
 
 function towerOfHanoi(
   plates: number,
@@ -9,15 +9,15 @@ function towerOfHanoi(
   sourceName: string,
   helperName: string,
   destName: string,
-  moves: MoveTowerOfHanoi[] = []
-): MoveTowerOfHanoi[] {
+  moves: TowerOfHanoiModel[] = []
+): TowerOfHanoiModel[] {
   if (plates <= 0) {
     return moves;
   }
 
   if (plates === 1) {
     dest.push(source.pop()!);
-    const move: MoveTowerOfHanoi = {};
+    const move: TowerOfHanoiModel = {};
     move[sourceName] = source.toString();
     move[helperName] = helper.toString();
     move[destName] = dest.toString();
@@ -25,7 +25,7 @@ function towerOfHanoi(
   } else {
     towerOfHanoi(plates - 1, source, dest, helper, sourceName, destName, helperName, moves);
     dest.push(source.pop()!);
-    const move: MoveTowerOfHanoi = {};
+    const move: TowerOfHanoiModel = {};
     move[sourceName] = source.toString();
     move[helperName] = helper.toString();
     move[destName] = dest.toString();
@@ -36,7 +36,7 @@ function towerOfHanoi(
   return moves;
 }
 
-export function towerOfHanoiStack(plates: number): MoveTowerOfHanoi[] {
+export function towerOfHanoiStack(plates: number): TowerOfHanoiModel[] {
   const source: Stack<number> = new Stack<number>();
   const dest: Stack<number> = new Stack<number>();
   const helper: Stack<number> = new Stack<number>();

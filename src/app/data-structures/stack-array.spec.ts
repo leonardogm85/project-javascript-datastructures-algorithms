@@ -166,18 +166,18 @@ describe('StackArray', () => {
   });
 
   it('returns toString primitive types', () => {
-    const stack: StackArray<number> = new StackArray<number>();
+    const stackNumber: StackArray<number> = new StackArray<number>();
 
-    expect(stack.toString()).toEqual('');
+    expect(stackNumber.toString()).toEqual('');
 
-    stack.push(1);
-    expect(stack.toString()).toEqual('1');
+    stackNumber.push(1);
+    expect(stackNumber.toString()).toEqual('1');
 
-    stack.push(2);
-    expect(stack.toString()).toEqual('1,2');
+    stackNumber.push(2);
+    expect(stackNumber.toString()).toEqual('1,2');
 
-    stack.clear();
-    expect(stack.toString()).toEqual('');
+    stackNumber.clear();
+    expect(stackNumber.toString()).toEqual('');
 
     const stackString: StackArray<string> = new StackArray<string>();
 
@@ -199,14 +199,14 @@ describe('StackArray', () => {
       }
     }
 
-    const stackMyObj: StackArray<MyObject> = new StackArray<MyObject>();
+    const stackMyObject: StackArray<MyObject> = new StackArray<MyObject>();
 
-    expect(stackMyObj.toString()).toEqual('');
+    expect(stackMyObject.toString()).toEqual('');
 
-    stackMyObj.push(new MyObject(1, 2));
-    expect(stackMyObj.toString()).toEqual('1|2');
+    stackMyObject.push(new MyObject(1, 2));
+    expect(stackMyObject.toString()).toEqual('1|2');
 
-    stackMyObj.push(new MyObject(3, 4));
-    expect(stackMyObj.toString()).toEqual('1|2,3|4');
+    stackMyObject.push(new MyObject(3, 4));
+    expect(stackMyObject.toString()).toEqual('1|2,3|4');
   });
 });

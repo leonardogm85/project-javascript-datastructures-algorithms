@@ -1,6 +1,7 @@
 import { Queue } from '../data-structures/queue';
+import { HotPotatoModel } from '../models/hot-potato-model';
 
-export function hotPotato<T>(elementsList: T[], num: number) {
+export function hotPotato<T>(elementsList: T[], num: number): HotPotatoModel<T> {
   const queue: Queue<T> = new Queue<T>();
 
   const elimitatedList: T[] = [];
@@ -19,6 +20,6 @@ export function hotPotato<T>(elementsList: T[], num: number) {
 
   return {
     elimitated: elimitatedList,
-    winner: queue.dequeue()
+    winner: queue.dequeue()!
   };
 }

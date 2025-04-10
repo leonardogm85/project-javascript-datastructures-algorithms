@@ -1,7 +1,7 @@
 import { Stack } from '../data-structures/stack';
 
 export function parenthesesChecker(symbols: string): boolean {
-  const stack = new Stack<string>();
+  const stack: Stack<string> = new Stack<string>();
 
   const opens: string = '([{';
   const closers: string = ')]}';

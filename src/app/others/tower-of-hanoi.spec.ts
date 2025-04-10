@@ -1,4 +1,4 @@
-import { MoveTowerOfHanoi } from '../models/move-tower-of-hanoi';
+import { TowerOfHanoiModel } from '../models/tower-of-hanoi-model';
 import { towerOfHanoiRecursive, towerOfHanoiStack } from './tower-of-hanoi';
 
 describe('Tower of Hanoi', () => {
@@ -11,7 +11,7 @@ describe('Tower of Hanoi', () => {
 
   it('Hanoi with Stack', () => {
     for (let i: number = 0; i < 10; i++) {
-      const result: MoveTowerOfHanoi[] = towerOfHanoiStack(i);
+      const result: TowerOfHanoiModel[] = towerOfHanoiStack(i);
       expect(result.length).toEqual(2 ** i - 1);
     }
   });
