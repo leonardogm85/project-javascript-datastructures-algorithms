@@ -8,14 +8,6 @@ export class Queue<T> {
     this.items[this.count++] = element;
   }
 
-  size(): number {
-    return this.count - this.lowestCount;
-  }
-
-  isEmpty(): boolean {
-    return this.size() === 0;
-  }
-
   dequeue(): T | undefined {
     if (this.isEmpty()) {
       return undefined;
@@ -34,6 +26,14 @@ export class Queue<T> {
     }
 
     return this.items[this.lowestCount];
+  }
+
+  isEmpty(): boolean {
+    return this.size() === 0;
+  }
+
+  size(): number {
+    return this.count - this.lowestCount;
   }
 
   clear(): void {

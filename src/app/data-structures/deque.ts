@@ -62,12 +62,12 @@ export class Deque<T> {
     return this.items[this.count - 1];
   }
 
-  size(): number {
-    return this.count - this.lowestCount;
-  }
-
   isEmpty(): boolean {
     return this.size() === 0;
+  }
+
+  size(): number {
+    return this.count - this.lowestCount;
   }
 
   clear(): void {

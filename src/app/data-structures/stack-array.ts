@@ -6,20 +6,20 @@ export class StackArray<T> {
     this.items.push(element);
   }
 
-  size(): number {
-    return this.items.length;
-  }
-
-  isEmpty(): boolean {
-    return this.size() === 0;
-  }
-
   pop(): T | undefined {
     return this.items.pop();
   }
 
   peek(): T | undefined {
     return this.items[this.items.length - 1];
+  }
+
+  isEmpty(): boolean {
+    return this.size() === 0;
+  }
+
+  size(): number {
+    return this.items.length;
   }
 
   clear(): void {

@@ -7,14 +7,6 @@ export class Stack<T> {
     this.items[this.count++] = element;
   }
 
-  size(): number {
-    return this.count;
-  }
-
-  isEmpty(): boolean {
-    return this.size() === 0;
-  }
-
   pop(): T | undefined {
     if (this.isEmpty()) {
       return undefined;
@@ -33,6 +25,14 @@ export class Stack<T> {
     }
 
     return this.items[this.count - 1];
+  }
+
+  isEmpty(): boolean {
+    return this.size() === 0;
+  }
+
+  size(): number {
+    return this.count;
   }
 
   clear(): void {
