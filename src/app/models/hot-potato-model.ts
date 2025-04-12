@@ -1,4 +1,4 @@
-export interface HotPotatoModel<T> {
+export type HotPotatoModel<T> = {
   elimitated: T[],
   winner: T
 }

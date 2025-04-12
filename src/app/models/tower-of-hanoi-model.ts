@@ -1,3 +1,9 @@
-export interface TowerOfHanoiModel {
-  [key: string]: string
-}
+export type TowerOfHanoiModel = {
+  source: string,
+  helper: string,
+  dest: string
+};
+
+export type TowerOfHanoiProperty = keyof TowerOfHanoiModel;
+
+export type TowerOfHanoiPartial = Partial<TowerOfHanoiModel>;
