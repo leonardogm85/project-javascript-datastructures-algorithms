@@ -1,7 +1,7 @@
 import { Queue } from '../data-structures/queue';
-import { HotPotatoModel } from '../models/hot-potato-model';
+import { IHotPotatoModel } from '../models/hot-potato-model';
 
-export function hotPotato<T>(elementsList: T[], num: number): HotPotatoModel<T> {
+export function hotPotato<T>(elementsList: T[], num: number): IHotPotatoModel<T> {
   const queue: Queue<T> = new Queue<T>();
 
   const elimitatedList: T[] = [];
