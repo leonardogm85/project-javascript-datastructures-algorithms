@@ -294,11 +294,13 @@ describe('LinkedList', () => {
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
-    list.push(4);
+    head = 0;
+
+    list.insertAt(0, 0);
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
-    list.push(5);
+    list.insertAt(4, 4);
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
@@ -306,7 +308,7 @@ describe('LinkedList', () => {
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
-    head = 2;
+    head = 1;
 
     list.removeAt(0);
     expect(list.getHead()).toBeDefined();
@@ -316,7 +318,7 @@ describe('LinkedList', () => {
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
-    head = 4;
+    head = 3;
 
     list.removeAt(0);
     expect(list.getHead()).toBeDefined();

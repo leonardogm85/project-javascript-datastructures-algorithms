@@ -58,7 +58,10 @@ export class LinkedList<T> {
     if (index === 0) {
       node.next = this.head;
       this.head = node;
-      this.tail ??= node;
+
+      if (this.isEmpty()) {
+        this.tail = node;
+      }
     } else if (index === this.size()) {
       this.tail!.next = node;
       this.tail = node;
@@ -83,6 +86,16 @@ export class LinkedList<T> {
 
     if (index === 0) {
       this.head = current?.next;
+
+      if (this.size() === 1) {
+        this.tail = undefined;
+      }
+    } else if (index === this.size() - 1) {
+      const previous: Node<T> = this.getNodeAt(this.size() - 2)!;
+
+      current = this.tail;
+      previous.next = undefined;
+      this.tail = previous;
     } else {
       const previous: Node<T> = this.getNodeAt(index - 1)!;
 

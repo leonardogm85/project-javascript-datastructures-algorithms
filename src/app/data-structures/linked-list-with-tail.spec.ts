@@ -294,11 +294,13 @@ describe('LinkedList', () => {
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
-    list.push(4);
+    head = 0;
+
+    list.insertAt(0, 0);
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
-    list.push(5);
+    list.insertAt(4, 4);
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
@@ -306,7 +308,7 @@ describe('LinkedList', () => {
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
-    head = 2;
+    head = 1;
 
     list.removeAt(0);
     expect(list.getHead()).toBeDefined();
@@ -316,7 +318,7 @@ describe('LinkedList', () => {
     expect(list.getHead()).toBeDefined();
     expect(list.getHead()).toEqual(head);
 
-    head = 4;
+    head = 3;
 
     list.removeAt(0);
     expect(list.getHead()).toBeDefined();
@@ -335,7 +337,7 @@ describe('LinkedList', () => {
     const list: LinkedList<number> = new LinkedList<number>(defaultEquals);
     expect(list.getTail()).toBeUndefined();
 
-    let tail: number = 1;
+    let tail: number | undefined = 1;
 
     list.push(1);
     expect(list.getTail()).toBeDefined();
@@ -353,30 +355,41 @@ describe('LinkedList', () => {
     expect(list.getTail()).toBeDefined();
     expect(list.getTail()).toEqual(tail);
 
+    list.insertAt(0, 0);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(tail);
+
     tail = 4;
 
-    list.push(4);
+    list.insertAt(4, 4);
     expect(list.getTail()).toBeDefined();
     expect(list.getTail()).toEqual(tail);
 
-    tail = 5;
+    tail = 3;
 
-    list.push(5);
+    list.removeAt(4);
     expect(list.getTail()).toBeDefined();
     expect(list.getTail()).toEqual(tail);
 
-    // list.removeAt(1);
-    // expect(list.getTail()).toBeDefined();
-    // expect(list.getTail()).toEqual(3);
+    list.removeAt(0);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(tail);
 
-    // list.removeAt(1);
-    // expect(list.getTail()).toBeDefined();
-    // expect(list.getTail()).toEqual(1);
+    list.removeAt(1);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(tail);
 
-    // list.removeAt(0);
-    // expect(list.getTail()).toBeUndefined();
-    // expect(list.size()).toEqual(0);
-    // expect(list.isEmpty()).toBeTrue();
+    list.removeAt(0);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(tail);
+
+    tail = undefined;
+
+    list.removeAt(0);
+    expect(list.getTail()).toBeUndefined();
+    expect(list.getTail()).toEqual(tail);
+    expect(list.size()).toEqual(0);
+    expect(list.isEmpty()).toBeTrue();
   });
 
   it('returns the correct size', () => {
