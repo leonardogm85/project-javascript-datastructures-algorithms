@@ -5,6 +5,7 @@ export class LinkedList<T> {
 
   protected count: number = 0;
   protected head?: Node<T>;
+  protected tail?: Node<T>;
 
   constructor(protected equalsFn: IEqualsFunction<T> = defaultEquals) { }
 
@@ -13,9 +14,17 @@ export class LinkedList<T> {
       return undefined;
     }
 
-    let current: Node<T> | undefined = this.head;
+    if (index === 0) {
+      return this.head!;
+    }
 
-    for (let i: number = 0; i < index; i++) {
+    if (index === this.size() - 1) {
+      return this.tail!;
+    }
+
+    let current: Node<T> | undefined = this.head?.next;
+
+    for (let i: number = 1; i < index; i++) {
       current = current!.next;
     }
 
@@ -32,15 +41,10 @@ export class LinkedList<T> {
     if (this.isEmpty()) {
       this.head = node;
     } else {
-      let current: Node<T> = this.head!;
-
-      while (current.next) {
-        current = current.next!;
-      }
-
-      current.next = node;
+      this.tail!.next = node;
     }
 
+    this.tail = node;
     this.count++;
   }
 
@@ -54,6 +58,10 @@ export class LinkedList<T> {
     if (index === 0) {
       node.next = this.head;
       this.head = node;
+      this.tail ??= node;
+    } else if (index === this.size()) {
+      this.tail!.next = node;
+      this.tail = node;
     } else {
       const previous: Node<T> = this.getNodeAt(index - 1)!;
 
@@ -92,9 +100,17 @@ export class LinkedList<T> {
   }
 
   indexOf(element: T): number {
-    let current: Node<T> | undefined = this.head;
+    if (this.size() > 0 && this.equalsFn(element, this.head!.element)) {
+      return 0;
+    }
 
-    for (let i: number = 0; i < this.size(); i++) {
+    if (this.size() > 1 && this.equalsFn(element, this.tail!.element)) {
+      return this.size() - 1;
+    }
+
+    let current: Node<T> | undefined = this.head!.next;
+
+    for (let i: number = 1; i < this.size() - 1; i++) {
       if (this.equalsFn(element, current!.element)) {
         return i;
       }
@@ -117,8 +133,13 @@ export class LinkedList<T> {
     return this.head?.element;
   }
 
+  getTail(): T | undefined {
+    return this.tail?.element;
+  }
+
   clear(): void {
     this.head = undefined;
+    this.tail = undefined;
     this.count = 0;
   }
 

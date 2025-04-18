@@ -261,15 +261,19 @@ describe('LinkedList', () => {
 
     pushesElements(list, min, max);
 
+    let currentMin: number = min;
+    let currentMax: number = min;
+
     for (let i: number = max; i >= min; i--) {
       element = list.removeAt(i - 1);
       expect(element).toBeDefined();
       expect(element).toEqual(i);
-      max--;
-      verifyList(list, min, max);
+      currentMax--;
+      currentMin++;
+      verifyList(list, currentMin, currentMax);
     }
 
-    verifyList(list, min, max);
+    verifyList(list, currentMin, currentMax);
   });
 
   it('returns the head of the list', () => {
@@ -278,6 +282,32 @@ describe('LinkedList', () => {
 
     list.push(1);
     expect(list.getHead()).toBeDefined();
+    expect(list.getHead()).toEqual(1);
+
+    list.push(2);
+    expect(list.getHead()).toBeDefined();
+    expect(list.getHead()).toEqual(1);
+
+    list.push(3);
+    expect(list.getHead()).toBeDefined();
+    expect(list.getHead()).toEqual(1);
+  });
+
+  it('returns the tail of the list', () => {
+    const list: LinkedList<number> = new LinkedList<number>(defaultEquals);
+    expect(list.getTail()).toBeUndefined();
+
+    list.push(1);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(1);
+
+    list.push(2);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(2);
+
+    list.push(3);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(3);
   });
 
   it('returns the correct size', () => {
