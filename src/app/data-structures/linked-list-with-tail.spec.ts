@@ -1,4 +1,4 @@
-import { LinkedList } from './linked-list';
+import { LinkedList } from './linked-list-with-tail';
 import { defaultEquals } from "../util";
 
 describe('LinkedList', () => {
@@ -329,6 +329,54 @@ describe('LinkedList', () => {
     expect(list.getHead()).toEqual(head);
     expect(list.size()).toEqual(0);
     expect(list.isEmpty()).toBeTrue();
+  });
+
+  it('returns the tail of the list', () => {
+    const list: LinkedList<number> = new LinkedList<number>(defaultEquals);
+    expect(list.getTail()).toBeUndefined();
+
+    let tail: number = 1;
+
+    list.push(1);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(tail);
+
+    tail = 2;
+
+    list.push(2);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(tail);
+
+    tail = 3;
+
+    list.push(3);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(tail);
+
+    tail = 4;
+
+    list.push(4);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(tail);
+
+    tail = 5;
+
+    list.push(5);
+    expect(list.getTail()).toBeDefined();
+    expect(list.getTail()).toEqual(tail);
+
+    // list.removeAt(1);
+    // expect(list.getTail()).toBeDefined();
+    // expect(list.getTail()).toEqual(3);
+
+    // list.removeAt(1);
+    // expect(list.getTail()).toBeDefined();
+    // expect(list.getTail()).toEqual(1);
+
+    // list.removeAt(0);
+    // expect(list.getTail()).toBeUndefined();
+    // expect(list.size()).toEqual(0);
+    // expect(list.isEmpty()).toBeTrue();
   });
 
   it('returns the correct size', () => {
